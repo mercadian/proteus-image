@@ -15,3 +15,6 @@
 	path = radxa/u-boot
 	url = https://github.com/mercadian/radxa-u-boot.git
 	branch = stable-5.10-rock5
+[submodule "dtoverlays"]
+	path = dtoverlays
+	url = https://github.com/mercadian/dtoverlays.git

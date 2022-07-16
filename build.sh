@@ -13,8 +13,9 @@ fail() {
 }
 
 # Parse arguments
-while getopts "uki" FLAG; do
+while getopts "ouki" FLAG; do
     case "$FLAG" in
+	o) BUILD_OVERLAYS=true ;;
         u) BUILD_UBOOT=true ;;
         k) BUILD_KERNEL=true ;;
         i) BUILD_IMAGE=true ;;
@@ -24,6 +25,11 @@ done
 
 # Initialize the submodules
 git submodule init && git submodule update --recursive || fail "Failed to initialize and update submodules."
+
+# Build Overlays
+if [ "$BUILD_OVERLAYS" = true ]; then
+    docker run -it --rm --device /dev/kvm --security-opt label=disable --privileged --name proteus-build -v "$(dirname $(realpath $0)):/src" -w "/src" --entrypoint "/src/overlays.sh" mercadian/proteus-build:latest
+fi
 
 # Build U-Boot
 if [ "$BUILD_UBOOT" = true ]; then
