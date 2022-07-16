@@ -35,3 +35,7 @@ if [ "$BUILD_KERNEL" = true ]; then
     docker run -it --rm --device /dev/kvm --security-opt label=disable --privileged --name proteus-build -v "$(dirname $(realpath $0)):/src" -w "/src" --entrypoint "/src/kernel.sh" mercadian/proteus-build:latest
 fi
 
+# Build OS Image
+if [ "$BUILD_IMAGE" = true ]; then
+    docker run -it --rm --device /dev/kvm --security-opt label=disable --privileged --name proteus-build -v "$(dirname $(realpath $0)):/src" -w "/src" --entrypoint "/src/image.sh" mercadian/proteus-build:latest
+fi
