@@ -15,6 +15,11 @@ fail() {
 
 cd /src/radxa
 
+# Remove old packages
+echo -e "${COLOR_BLUE}=== Removing old U-Boot Images ===${COLOR_RESET}"
+rm -f ./out/packages/rock-5b-rk-ubootimg*.deb || fail "Failed to remove old images."
+echo -e "${COLOR_GREEN}=== Cleanup Successful! ===${COLOR_RESET}\n"
+
 # Build the boot image
 echo -e "${COLOR_BLUE}=== Building U-Boot Image for Rock 5B ===${COLOR_RESET}"
 ./build/mk-uboot.sh rock-5b || fail "Failed to build u-boot image."
@@ -28,7 +33,7 @@ echo -e "${COLOR_GREEN}=== Generation Successful! ===${COLOR_RESET}\n"
 # Copy the package over to the OS image dir
 echo -e "${COLOR_BLUE}=== Copying Package to OS Image Dir ===${COLOR_RESET}"
 rm -f ./debos/rootfs/packages/arm64/u-boot/rock-5b* || fail "Failed to remove old u-boot packages."
-cp ./out/packages/rock-5b*.deb ./debos/rootfs/packages/arm64/u-boot/ || fail "Failed to copy u-boot package."
+cp ./out/packages/rock-5b-rk-ubootimg*.deb ./debos/rootfs/packages/arm64/u-boot/ || fail "Failed to copy u-boot package."
 echo -e "${COLOR_GREEN}=== Copy Successful! ===${COLOR_RESET}"
 
 echo -e "${COLOR_GREEN}U-Boot successfully built.${COLOR_RESET}\n"
