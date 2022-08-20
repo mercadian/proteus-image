@@ -2,3 +2,4 @@ radxa/out
 *.buildinfo
 .vscode/
 .vscode*
+signer.sh

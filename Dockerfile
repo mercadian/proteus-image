@@ -33,7 +33,10 @@ RUN apt update && apt install -y \
 	host \
 	curl \
 	bmap-tools \
-	wget
+	wget \
+	device-tree-compiler \
+	devscripts \
+	lintian
 
 RUN gem install fpm
 
