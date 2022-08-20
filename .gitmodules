@@ -4,17 +4,17 @@
 [submodule "radxa/debos"]
 	path = radxa/debos
 	url = https://github.com/mercadian/radxa-debos.git
-[submodule "radxa/kernel"]
-	path = radxa/kernel
-	url = https://github.com/mercadian/radxa-kernel.git
-	branch = stable-5.10-rock5
-[submodule "radxa/rkbin"]
-	path = radxa/rkbin
-	url = https://github.com/mercadian/radxa-rkbin.git
-[submodule "radxa/u-boot"]
-	path = radxa/u-boot
-	url = https://github.com/mercadian/radxa-u-boot.git
-	branch = stable-5.10-rock5
 [submodule "proteus-overlay-pkg"]
 	path = proteus-overlay-pkg
 	url = https://github.com/mercadian/proteus-overlay-pkg.git
+[submodule "radxa/rkbin"]
+	path = radxa/rkbin
+	url = https://github.com/radxa/rkbin.git
+[submodule "radxa/u-boot"]
+	path = radxa/u-boot
+	url = https://github.com/radxa/u-boot.git
+	branch = stable-5.10-rock5
+[submodule "radxa/kernel"]
+	path = radxa/kernel
+	url = https://github.com/radxa/kernel.git
+	branch = stable-5.10-rock5
