@@ -12,14 +12,38 @@ fail() {
     exit 1
 }
 
+# Help text
+help() {
+    cat >&2 << helpText
+Builds the Proteus OS image artifacts.
+
+Usage: build.sh [-p -u -k -i]
+Options:
+    -h | --help  Prints this help text
+    -p           Builds the device tree overlay package that makes the activity
+                 LED work properly (required for the OS image)
+    -u           Builds the U-Boot bootloader image (required for the OS image)
+    -k           Builds the kernel and associated Debian packages (required for
+                 the OS image)
+    -i           Builds the OS image
+
+helpText
+
+    exit 0
+}
+
+for i in $*; do
+    test "$i" == "-h" || test "$i" == "--help" && help
+done
+
 # Parse arguments
-while getopts "ouki" FLAG; do
+while getopts "puki" FLAG; do
     case "$FLAG" in
-	o) BUILD_OVERLAYS=true ;;
+	    p) BUILD_OVERLAY_PACKAGE=true ;;
         u) BUILD_UBOOT=true ;;
         k) BUILD_KERNEL=true ;;
         i) BUILD_IMAGE=true ;;
-        *) fail "Incorrect usage." ;;
+        *) help ;;
     esac
 done
 
@@ -27,8 +51,8 @@ done
 git submodule init && git submodule update --recursive || fail "Failed to initialize and update submodules."
 
 # Build Overlays
-if [ "$BUILD_OVERLAYS" = true ]; then
-    docker run -it --rm --device /dev/kvm --security-opt label=disable --privileged --name proteus-build -v "$(dirname $(realpath $0)):/src" -w "/src" --entrypoint "/src/overlays.sh" mercadian/proteus-build:latest
+if [ "$BUILD_OVERLAY_PACKAGE" = true ]; then
+    docker run -it --rm --device /dev/kvm --security-opt label=disable --privileged --name proteus-build -v "$(dirname $(realpath $0)):/src" -w "/src" --entrypoint "/src/overlay_package.sh" mercadian/proteus-build:latest
 fi
 
 # Build U-Boot

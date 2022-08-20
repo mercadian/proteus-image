@@ -1,3 +1,4 @@
 radxa/out
 *.buildinfo
 .vscode/
+.vscode*
