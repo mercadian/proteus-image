@@ -17,7 +17,7 @@ cd /src/radxa/debos
 
 # Build the image
 echo -e "${COLOR_BLUE}=== Building OS Image Rock 5B ===${COLOR_RESET}"
-./build.sh -c rk3588 -b rock-5b -m debian -d bullseye -v server -a arm64 -f gpt || fail "Failed to build image."
+./scripts/build.sh -c rk3588 -b rock-5b -m debian -d bullseye -v server -a arm64 -f gpt || fail "Failed to build image."
 echo -e "${COLOR_GREEN}=== Build Successful! ===${COLOR_RESET}\n"
 
 echo -e "${COLOR_GREEN}Image successfully built.${COLOR_RESET}\n"
