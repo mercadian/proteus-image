@@ -47,9 +47,6 @@ while getopts "puki" FLAG; do
     esac
 done
 
-# Initialize the submodules
-git submodule init && git submodule update --recursive || fail "Failed to initialize and update submodules."
-
 # Build Overlays
 if [ "$BUILD_OVERLAY_PACKAGE" = true ]; then
     docker run -it --rm --device /dev/kvm --security-opt label=disable --privileged --name proteus-build -v "$(dirname $(realpath $0)):/src" -w "/src" --entrypoint "/src/overlay_package.sh" mercadian/proteus-build:latest
