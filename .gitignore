@@ -3,3 +3,4 @@ radxa/out
 .vscode/
 .vscode*
 signer.sh
+.overlay_package.sh.swp

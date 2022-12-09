@@ -39,7 +39,7 @@ done
 # Parse arguments
 while getopts "puki" FLAG; do
     case "$FLAG" in
-	    p) BUILD_OVERLAY_PACKAGE=true ;;
+        p) BUILD_OVERLAY_PACKAGE=true ;;
         u) BUILD_UBOOT=true ;;
         k) BUILD_KERNEL=true ;;
         i) BUILD_IMAGE=true ;;
