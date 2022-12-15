@@ -8,6 +8,9 @@ COLOR_BLUE='\033[0;36m'
 COLOR_RESET='\033[0m'
 
 DEBOS_PKG_DIR="/src/radxa/debos/rootfs/packages/arm64/kernel"
+INCLUDE_DIR="/src/radxa/kernel/include"
+ORIGINAL_DTS="user-led-overlay.dts"
+PREPROCESSED_DTS="${ORIGINAL_DTS}.preprocessed"
 
 # Error message and exit function
 fail() {
@@ -19,7 +22,13 @@ fail() {
 # Clean the old packages
 rm -f $DEBOS_PKG_DIR/proteus-overlay*.deb
 cd /src/proteus-overlay-pkg
+rm -f src/$PREPROCESSED_DTS
 mkdir -p out
+
+# Preprocess the file
+echo -e "${COLOR_BLUE}=== Preprocessing the Proteus Device Tree Overlay Package ===${COLOR_RESET}"
+cpp -nostdinc -I $INCLUDE_DIR -undef -x assembler-with-cpp src/$ORIGINAL_DTS src/$PREPROCESSED_DTS
+echo -e "${COLOR_GREEN}=== Preprocess Successful! ===${COLOR_RESET}\n"
 
 # Build the package
 echo -e "${COLOR_BLUE}=== Building the Proteus Device Tree Overlay Package ===${COLOR_RESET}"
