@@ -7,7 +7,6 @@ COLOR_YELLOW='\033[0;33m'
 COLOR_BLUE='\033[0;36m'
 COLOR_RESET='\033[0m'
 
-DEBOS_PKG_DIR="/src/radxa/debos/rootfs/packages/arm64/kernel"
 INCLUDE_DIR="/src/radxa/kernel/include"
 ORIGINAL_DTS="user-led-overlay.dts"
 PREPROCESSED_DTS="${ORIGINAL_DTS}.preprocessed"
@@ -20,9 +19,9 @@ fail() {
 }
 
 # Clean the old packages
-rm -f $DEBOS_PKG_DIR/proteus-overlay*.deb
 cd /src/proteus-overlay-pkg
 rm -f src/$PREPROCESSED_DTS
+rm -rf out
 mkdir -p out
 
 # Preprocess the file
@@ -38,11 +37,10 @@ echo -e "${COLOR_GREEN}=== Build Successful! ===${COLOR_RESET}\n"
 # Move the build artifacts
 echo -e "${COLOR_BLUE}=== Copying Package to Debos Dir ===${COLOR_RESET}"
 mv ../*.build ../*.buildinfo ../*.changes ./*.dtbo ../*.deb out || fail "Failed to move the output files."
-cp out/*.deb $DEBOS_PKG_DIR || fail "Failed to move the package."
 
 # List the output
 echo "Output package:"
-find $DEBOS_PKG_DIR -name "proteus-overlay*.deb"
+find . -name "proteus-overlay*.deb"
 echo -e "${COLOR_GREEN}=== Copy Successful! ===${COLOR_RESET}"
 
 echo -e "${COLOR_GREEN}Package successfully built.${COLOR_RESET}\n"
