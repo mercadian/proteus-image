@@ -114,10 +114,4 @@ This will take some time, but eventually produce a flashable image file called `
 
 ## Flashing the Image to the Proteus
 
-**NOTE:** Currently, the Rock 5B requires the boot image to be installed onto an included eMMC module rather than onto the NVMe drive itself. This is likely to change in the future once Radxa adds support for booting from the NVMe drive to the Rock 5B's bootloader. Until they add it, you must flash the image to the eMMC module included with the Proteus.
-
-To flash the image, you will need a USB to eMMC adapter such as this one: https://www.amazon.com/ODROID-USB3-0-eMMC-Module-Writer/dp/B07BHQ615Q
-
-You can use a tool such as [balenaEtcher](https://www.balena.io/etcher/) to flash the image to the eMMC module.
-
-Once flashed, simply plug the eMMC module back into the Proteus and boot it up!
+To flash the image to Proteus, it is recommended to follow [this guide](https://github.com/mercadian/proteus/wiki/Flashing-the-Image).
