@@ -11,7 +11,7 @@ It includes:
 - Radxa's variant of the v5.10.66 Linux kernel for the Rock 5B
 - The requisite OS packages, and some bonus packages useful for node operation such as `lm-sensors` and `jq`
 - Docker and docker-compose
-- The Rocket Pool Smartnode software (v1.6.0 is currently installed, which may not be the latest - see [the releases page](https://github.com/rocket-pool/smartnode-install/releases/latest) to check if there is an update)
+- The Rocket Pool Smartnode software (v1.7.5 is currently installed, which may not be the latest - see [the releases page](https://github.com/rocket-pool/smartnode-install/releases/latest) to check if there is an update)
 - Proteus-specific device tree overlays, which are necessary for the front panel and activity LED to function correctly
 
 
